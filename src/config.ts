@@ -35,3 +35,11 @@ export const BANK_META: Record<Bank, { display: string, color: string }> = {
   intercam: { display: 'Intercam', color: 'rgb(50,171,44)' },
   transferwise: { display: 'Transferwise', color: 'rgb(243,99,9)' },
 } as const
+
+/*
+  * PostHog constants
+ */
+
+export const POSTHOG_KEY = process.env.NEXT_PUBLIC_POSTHOG_KEY
+export const POSTHOG_HOST = process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://app.posthog.com'
+export const isPostHogEnabled = !!POSTHOG_KEY

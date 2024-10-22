@@ -30,3 +30,9 @@ load Inter, a custom Google Font.
 
 We use Doppler to manage secrets. Please request access and run the project with `doppler run -- npm` or
 add your own token.
+
+
+## Migrations
+This project uses Prisma ORM to handle database connection and migrations.
+
+In order to apply pending migrations in dev env, we recommend you to run: `npm run migrate:dev` 

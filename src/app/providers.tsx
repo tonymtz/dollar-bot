@@ -5,9 +5,11 @@ import posthog from 'posthog-js'
 import { PostHogProvider, usePostHog } from 'posthog-js/react'
 import { Suspense, useEffect } from 'react'
 
+import {isPostHogEnabled, POSTHOG_HOST, POSTHOG_KEY} from '~/config'
+
 if (typeof window !== 'undefined') {
-  posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!!, {
-    api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://app.posthog.com',
+  posthog.init(POSTHOG_KEY!!, {
+    api_host: POSTHOG_HOST,
     capture_pageview: false, // Disable automatic pageview capture, as we capture manually
   })
 }
@@ -37,6 +39,10 @@ export function PostHogPageview () {
 }
 
 export function PHProvider ({ children }: { children: React.ReactNode }) {
+  if (!isPostHogEnabled) {
+    return (<>{children}</>)
+  }
+
   return (
     <Suspense>
       <PostHogProvider client={ posthog }>{ children }</PostHogProvider>
