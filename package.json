@@ -1,9 +1,10 @@
 {
   "name": "dolarenbancos",
-  "version": "0.1.67",
+  "version": "0.1.68",
   "private": true,
   "scripts": {
-    "prepare": "panda codegen && husky install && npm run migrate:dev && npm run seed:dev",
+    "prepare": "panda codegen && husky install",
+    "prepare:db": "npm run migrate:dev && npm run seed:dev",
     "dev": "rm -rf .next && next dev",
     "build": "next build",
     "start": "next start",
