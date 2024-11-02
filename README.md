@@ -6,6 +6,7 @@
 - [Node.js](https://nodejs.org/en/) **v20.11.0**
 
 ## Getting Started
+
 First, prepare environment running:
 
 ```bash
@@ -29,23 +30,3 @@ load Inter, a custom Google Font.
 
 We use Doppler to manage secrets. Please request access and run the project with `doppler run -- npm` or
 add your own token.
-
-## Docker container
-If you want to setup a local Postgres server, you can use Docker
-
-First, make sure you have the following env keys in the `.env` file:
-```
-POSTGRES_PASSWORD=your_password
-POSTGRES_USER=your_username
-POSTGRES_DB=dolar-en-bancos
-POSTGRES_PORT=5432
-```
-
-And then, please run the following command to build and start the containers: `docker-compose up -d`
-
-## Migrations
-This project uses Prisma ORM to handle database connection and migrations.
-
-Please run `npm run prepare:db` if it's the first time setting up the project.
-
-In order to apply pending migrations in dev env, we recommend you to run: `npm run migrate:dev` 
