@@ -12,7 +12,7 @@
   "dependencies": {
     "@logtail/next": "^0.1.4",
     "@prisma/client": "^5.8",
-    "axios": "^1.6.5",
+    "axios": "^1.7.7",
     "chart.js": "^4.4.1",
     "cheerio": "^1.0.0-rc.12",
     "eslint-plugin-adonis": "^2.1.1",
