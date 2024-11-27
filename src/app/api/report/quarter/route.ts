@@ -1,11 +1,11 @@
 import { log } from '@logtail/next'
 
-import { getYearReport } from '~/lib/data/report-year.data'
+import { getQuarterReport } from '~/lib/data/report-quarter.data'
 
 export const dynamic = 'force-dynamic'
 
 export async function GET () {
-  const data = await getYearReport()
-  log.info('report-year', data)
+  const data = await getQuarterReport()
+  log.info('report-quarter', data)
   return new Response(JSON.stringify(data))
 }

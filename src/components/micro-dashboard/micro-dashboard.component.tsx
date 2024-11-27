@@ -10,9 +10,10 @@ import { wrapper } from './micro-dashboard.styles'
 
 interface Props {
   weeklyReport: Record<string, Prices>
+  showCalculator?: boolean
 }
 
-export const MicroDashboard: FC<Props> = ({ weeklyReport }) => {
+export const MicroDashboard: FC<Props> = ({ showCalculator, weeklyReport }) => {
   const weeklyPrices = Object.values(weeklyReport).map((prices) => prices.banxico.buy).reverse()
   const labels = useMemo(() =>
     Object.keys(weeklyReport)
@@ -20,12 +21,13 @@ export const MicroDashboard: FC<Props> = ({ weeklyReport }) => {
       .reverse(),
   [weeklyReport],
   )
+  const isCalculatorVisible = showCalculator ?? true
 
   return (
     <div className={ wrapper }>
       <TodayPrice/>
       <WeeklyChart prices={ weeklyPrices } labels={ labels }/>
-      <Calculator/>
+      {isCalculatorVisible && <Calculator/> }
     </div>
   )
 }
