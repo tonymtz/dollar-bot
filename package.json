@@ -1,6 +1,6 @@
 {
   "name": "dolarenbancos",
-  "version": "0.1.67",
+  "version": "0.1.69",
   "private": true,
   "scripts": {
     "prepare": "panda codegen && husky install",

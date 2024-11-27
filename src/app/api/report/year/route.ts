@@ -6,6 +6,6 @@ export const dynamic = 'force-dynamic'
 
 export async function GET () {
   const data = await getYearReport()
-  log.info('report-week', data)
+  log.info('report-year', data)
   return new Response(JSON.stringify(data))
 }
