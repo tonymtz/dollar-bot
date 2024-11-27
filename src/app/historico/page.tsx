@@ -10,7 +10,7 @@ import { WeeklyPriceChart } from '~/components/weekly-price-chart'
 import { ApplicationProvider } from '~/lib/application.context-provider'
 import { CalculatorResultProvider } from '~/lib/calculator-result.context-provider'
 import { Prices } from '~/lib/types'
-import { getBaseUrl } from '~/lib/utils'
+import { getBaseUrl, getEmptyPricesObject } from '~/lib/utils'
 
 const disclaimer = 'Actualizado con información pública. Las cantidades son datos de referencia solamente.'
 
@@ -23,6 +23,13 @@ interface Data {
 
 export default async function Historico () {
   const data = await getPrices()
+
+  if (!data) {
+    return {
+      notFound: true,
+    }
+  }
+
   const todayPrices = data.today
   const { banxico } = todayPrices
 
@@ -74,7 +81,13 @@ async function getPrices (): Promise<Data> {
     ])
 
     if (!today.ok || !weekly.ok || !monthly.ok || !quarterly.ok) {
-      throw new Error('Could not fetch prices')
+      return {
+        today: getEmptyPricesObject(),
+        week: {},
+        month: {},
+        quarter: {},
+      }
+      // throw new Error('Could not fetch prices')
     }
 
     return {
