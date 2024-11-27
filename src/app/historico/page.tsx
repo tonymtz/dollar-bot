@@ -10,7 +10,7 @@ import { WeeklyPriceChart } from '~/components/weekly-price-chart'
 import { ApplicationProvider } from '~/lib/application.context-provider'
 import { CalculatorResultProvider } from '~/lib/calculator-result.context-provider'
 import { Prices } from '~/lib/types'
-import { getBaseUrl, getEmptyPricesObject } from '~/lib/utils'
+import { getBaseUrl } from '~/lib/utils'
 
 const disclaimer = 'Actualizado con información pública. Las cantidades son datos de referencia solamente.'
 
@@ -81,13 +81,7 @@ async function getPrices (): Promise<Data> {
     ])
 
     if (!today.ok || !weekly.ok || !monthly.ok || !quarterly.ok) {
-      return {
-        today: getEmptyPricesObject(),
-        week: {},
-        month: {},
-        quarter: {},
-      }
-      // throw new Error('Could not fetch prices')
+      throw new Error('Could not fetch prices')
     }
 
     return {
